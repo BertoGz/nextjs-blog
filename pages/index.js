@@ -20,7 +20,7 @@ export default function Home({ allPostsData }) {
       <section className={utilStyles.headingMd}>
         <p>
           Hello i'm Berto Gonzalez! Im a software engineer and artist at heart.
-          I love to create. You can contact me 
+          I love to create. You can contact me
           <a href="mailto:bertogzlx@gmail.com"> here</a>.
         </p>
         <p>
@@ -29,7 +29,7 @@ export default function Home({ allPostsData }) {
             <a> Next.js </a>
           </Link>
           as my next step in the Front-end world. Im also doing abit of game dev
-          with 
+          with
           <Link href="https://godotengine.org/">
             <a> Godot </a>
           </Link>
@@ -39,8 +39,8 @@ export default function Home({ allPostsData }) {
       <section>
         <h2 className={utilStyles.headingLg}>Skills</h2>
         <p className="tags">
-          React.js - React Native - Typescript - Redux - React-Query - Jest - Graphql - Rest
-          Android - Ios - Git
+          React.js - React Native - Typescript - Redux - React-Query - Quickblox - Jest -
+          Graphql - Rest - Android - Ios - Git
         </p>
       </section>
       {/* Add this <section> tag below the existing <section> tag */}
@@ -49,11 +49,13 @@ export default function Home({ allPostsData }) {
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              {title}
+              <Link href={`posts/${id}`}>{title}</Link>
               <br />
               {id}
               <br />
-              {date}
+              <small className={utilStyles.lightText}>
+                <Date dateString={date} />
+              </small>
             </li>
           ))}
         </ul>
