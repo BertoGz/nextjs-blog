@@ -4,6 +4,8 @@ import { getAllPostIds, getPostById } from "../../lib/posts";
 import Date from "../../components/date";
 import utilStyles from '../../styles/utils.module.css';
 
+// get static props runs serverside
+// here we fetch data about certain post
 export async function getStaticProps({ params }) {
   const postData = await getPostById(params.id);
   return {
@@ -12,6 +14,12 @@ export async function getStaticProps({ params }) {
     },
   };
 }
+
+// getStaticPaths will pre-render all the pages return by the getAllPostIds
+// this does not scale well so we should only return X amount of pages that the
+// user might have access to immediately
+// else we have to create a loading state for a page that was not pre-rendered
+// by next.js
 export async function getStaticPaths() {
   const paths = getAllPostIds();
   return {
@@ -19,6 +27,7 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
+
 export default function Post({ postData }) {
   return (
     <Layout>
